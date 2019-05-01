@@ -1,4 +1,4 @@
-#attempted to use iris dataset
+#used the UCI leaf dataset
 import random
 import csv
 import math
@@ -7,8 +7,8 @@ import math
 def loadCSV(filename):
     lines = csv.reader(open(filename,"rb"))
     dataset = list(lines)
-    for i in range(len(dataset)-1):
-        dataset[i] = [float(x) for x in dataset[i][:-1]]
+    for i in range(len(dataset)):
+        dataset[i] = [float(x) for x in dataset[i]]
     return dataset
 
 def splitDataset(dataset, splitratio):
@@ -91,13 +91,13 @@ def getPredictions(summaries, testSet):
 def getAccuracy(testSet,predictions):
     correct = 0
     for i in range(len(testSet)):
-        if testSet[i][0] == prediction[i]:
+        if testSet[i][0] == predictions[i]:
             correct+=1
 
     return (correct/float(len(testSet)))*100.0
 
 def main():
-    filename = 'iris.data'
+    filename = 'leaf.csv'
     splitRatio = 0.7
     dataset=loadCSV(filename)
 
